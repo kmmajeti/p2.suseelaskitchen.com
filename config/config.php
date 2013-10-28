@@ -30,7 +30,7 @@ A email designated to receive messages from the server. Examples:
 	define('SYSTEM_EMAIL', 'kmmajeti@hotmail.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', "p2_suseelaskitchen_com"); 
+	define('DB_NAME', "suseelas_p2_suseelaskitchen_com"); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
