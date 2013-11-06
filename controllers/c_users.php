@@ -149,19 +149,34 @@ class users_controller extends base_controller {
 	}
 	
 	# Code here to the profile form
-	public function profile() {
+	public function profile($user_id = NULL) {
 
 		# If user is blank, they're not logged in; redirect them to the home page
 		if(!$this->user) {
 				Router::redirect('/');
+				die();
 		}
-
-		# If they weren't redirected away, continue:
 
 		# Setup view
 		$this->template->content = View::instance('v_users_profile');
 		$this->template->title   = "Profile of ".$this->user->first_name;
 
+		# If there is user_id passed, then set to the current user
+		if($user_id === NULL) {
+			$user_id = $this->user->user_id;
+		} else {
+			$user_id = DB::instance(DB_NAME)->sanitize($user_id);
+		}
+
+		# Query to select the user information and pass it to the content
+		$q = 'SELECT *
+						FROM users
+						WHERE user_id = '.$user_id;
+		
+		$profile_user = DB::instance(DB_NAME)->select_row($q);
+		$this->template->content->profile_user = $profile_user;
+		
+						
 		# Query to select posts of the user
 		$q = 'SELECT 
 						posts.post_id,
@@ -173,8 +188,8 @@ class users_controller extends base_controller {
 						users.user_id
 				FROM posts
 				INNER JOIN users 
-						ON posts.user_id = users.user_id
-				 WHERE users.user_id = '.$this->user->user_id.'
+						ON posts.user_id = '.$user_id.'
+				 WHERE users.user_id = '.$user_id.'
 				 ORDER BY posts.created DESC';
 
 		# Run the query, store the results in the variable $posts
@@ -193,6 +208,7 @@ class users_controller extends base_controller {
 		# If user is blank, they're not logged in; redirect them to the home page
 		if(!$this->user) {
 				Router::redirect('/');
+				die();
 		}
 
 		# If they weren't redirected away, continue:
