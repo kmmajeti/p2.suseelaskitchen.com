@@ -1,6 +1,6 @@
 <!-- Print post has been added message -->
 <?php if($addAnotherPost): ?>
-		<h3 class="success">Your post has been added successfully! Would you like to add another post?</h3>
+	<h3 class="success">Your post has been added successfully! Would you like to add another post?</h3>
 <?php endif; ?>
 
 <div class="content">
