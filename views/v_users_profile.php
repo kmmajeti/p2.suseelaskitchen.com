@@ -16,8 +16,6 @@
 		<p class="displayLabel">Location: </p>
 		<p class="contentvalue"><?=$user->location?></p>
 		<br>
-		<p class="displayLabel">Bio: </p>
-		<p class="contentvalue"><?=$user->bio?></p>
 		<br></br>
 		<div class="submitButton">
 			<a href="/users/edit_profile"><input type="button" name="editprofile" value="Edit Profile"></a>
@@ -26,9 +24,9 @@
 	
 	<!-- Code to display logged in user posts -->
 	<div class="userPosts">
-	<!-- Print the header -->
-	<h2>Here are your Posts:</h2>	
-	<?php foreach($posts as $post): ?>
+		<!-- Print the header -->
+		<h2>Here are your Posts:</h2>	
+		<?php foreach($posts as $post): ?>
 			<? if($post['user_id'] == $user: ?>
 				<div class="post">
 					<!-- Print Post user's name -->
