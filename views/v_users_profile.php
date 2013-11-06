@@ -28,9 +28,9 @@
 	<!-- Code to display logged in user posts -->
 	<div class="userPosts">
 		<!-- Print the header -->
-		<h2>Here are your Posts:</h2>	
+		<h2>Here are your <?=count($posts)?> Posts:</h2>	
 		<?php foreach($posts as $post): ?>
-			<? if($post['user_id'] == $profile_user: ?>
+			<? if($post['user_id'] == <?=$profile_user['user_id']?>: ?>
 				<div class="post">
 					<!-- Print Post user's name -->
 					<h3>Posted on : <?=Time::display($post['created'])?></h3>
