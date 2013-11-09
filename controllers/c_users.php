@@ -178,22 +178,18 @@ class users_controller extends base_controller {
 		
 						
 		# Query to select posts of the user
-		$q = 'SELECT 
+		$pq = 'SELECT 
 						posts.post_id,
-						posts.created,
-						posts.content,
 						posts.user_id,
-						users.first_name,
-						users.last_name,
-						users.user_id
+						posts.created,
+						posts.content
 				FROM posts
-				INNER JOIN users 
-						ON posts.user_id = '.$user_id.'
-				 WHERE users.user_id = '.$user_id.'
-				 ORDER BY posts.created DESC';
+				JOIN users USING (user_id)
+				WHERE user_id = '.$user_id.'
+				ORDER BY posts.created DESC';
 
 		# Run the query, store the results in the variable $posts
-		$posts = DB::instance(DB_NAME)->select_rows($q);
+		$posts = DB::instance(DB_NAME)->select_rows($pq);
 
 		# Pass data to the View
 		$this->template->content->posts = $posts;
