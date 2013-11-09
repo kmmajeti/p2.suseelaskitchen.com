@@ -26,14 +26,22 @@
 			<a href="/users/edit_profile"><input type="button" name="editprofile" value="Edit Profile"></a>
 		</div>
 	</div>
-	
-	<div>
-		<!-- Code to check the current profile user_id and post User_ID -->
+	<div class="userPosts">
+		<!-- Print the header -->
+		<h2>You posted <?=count($posts)?> status update(s):</h2>	
 		<?php foreach($posts as $post): ?>
-			<p><?=count($posts)?></p>
-			<p>Post User ID: <?=$post['user_id']?></p>
-			<p>Profile User ID:<?=$profile_user['user_id']?></p>
+			<? if($post['user_id'] === $profile_user['user_id']: ?>
+				<div class="post">
+					<!-- Print post content -->
+					<h4><?=$post['content']?></h4>
+					<!-- Print post created timestamp -->
+					<p>Posted on : <?= date('F d, Y @ g:ia',$post['created']) ?></p>
+					<!-- Show Delete button to delete his/her post -->
+					<div class="submitButton">
+						<a href="/posts/p_delete/<?=$post['post_id']?>"><input type="button" name="deletepost" value="Delete Post"></a>
+					</div>
+				</div>
+			<? endif; ?>
 		<?php endforeach; ?>
 	</div>
-
 </div>
