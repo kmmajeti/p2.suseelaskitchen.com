@@ -9,7 +9,7 @@
 			<!-- Print user's post content -->
 			<p><?=$post['content']?></p>
 			<!-- Print post created timestamp -->
-			<p><?=Time::display($post['created'])?></p>
+			<p><?= date('F d, Y @ g:ia',$post['created'])?></p>
 		</div>
 	<?php endforeach; ?>
 </div>
