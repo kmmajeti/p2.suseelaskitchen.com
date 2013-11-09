@@ -30,7 +30,7 @@
 		<!-- Print the header -->
 		<h2>You posted <?=count($posts)?> status update(s):</h2>	
 		<?php foreach($posts as $post): ?>
-			<? if($post['user_id'] === $profile_user['user_id']: ?>
+			<? if($post['user_id'] === $profile_user['user_id']): ?>
 				<div class="post">
 					<!-- Print post content -->
 					<h4><?=$post['content']?></h4>
